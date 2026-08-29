@@ -69,7 +69,7 @@ def test_all_source_text_is_preserved_across_split_chunks():
 
 
 def test_natural_break_prefers_heading_boundary():
-    page1 = PageText(page_number=1, text="A" * 3600 + "\nMore filler text here.")
+    page1 = PageText(page_number=1, text="A" * 7100 + "\nMore filler text here.")
     page2 = PageText(page_number=2, text="Section Two\nContent under section two.")
     chunks = chunk_pages([page1, page2])
     # Should break before page 2 since it starts with a heading and we're

@@ -31,8 +31,8 @@ from dataclasses import dataclass, field
 
 from app.services.pdf_service import PageText
 
-TARGET_CHUNK_CHARS = 3500
-MAX_CHUNK_CHARS = 5000  # hard ceiling before we force a break mid-page
+TARGET_CHUNK_CHARS = 7000
+MAX_CHUNK_CHARS = 9000  # hard ceiling before we force a break mid-page
 
 # Marker inserted before each page's text inside a chunk so per-card source
 # pages can be recovered from the model's output deterministically instead

@@ -105,7 +105,7 @@ def _generate_cards_for_chunk(chunk: Chunk) -> list[dict]:
             {"role": "user", "content": chunk.text},
         ],
         temperature=0.4,
-        max_tokens=4000,
+        max_tokens=2000,
         extra_body={"chat_template_kwargs": {"enable_thinking": False}},
     )
 

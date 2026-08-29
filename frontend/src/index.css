@@ -1,0 +1,84 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-sky bg-fixed text-ink-900 font-body antialiased;
+    min-height: 100vh;
+    background-image: theme('backgroundImage.sky'), theme('backgroundImage.confetti');
+  }
+
+  h1, h2, h3, h4 {
+    @apply font-display text-ink-900;
+  }
+
+  ::selection {
+    background: #FFC93C;
+    color: #2E2A4A;
+  }
+
+  :focus-visible {
+    outline: 3px solid #3EC6E0;
+    outline-offset: 3px;
+    border-radius: 8px;
+  }
+
+  ::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #FFDD7A;
+    border-radius: 999px;
+    border: 3px solid #FFF9EE;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #FFC93C;
+  }
+}
+
+@layer components {
+  /* "Sticker" buttons: a flat drop-shadow underneath that compresses on
+     press, so pressing a button feels like an actual physical tap. */
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-2xl px-5 py-3 font-display font-semibold text-sm sm:text-base transition-all duration-150 select-none disabled:opacity-40 disabled:pointer-events-none;
+  }
+  .btn-primary {
+    @apply btn bg-sunshine text-ink-900 shadow-pop hover:brightness-105 active:translate-y-[6px] active:shadow-none;
+  }
+  .btn-pink {
+    @apply btn bg-bubblegum text-white shadow-pop hover:brightness-105 active:translate-y-[6px] active:shadow-none;
+  }
+  .btn-blue {
+    @apply btn bg-sky text-white shadow-pop hover:brightness-105 active:translate-y-[6px] active:shadow-none;
+  }
+  .btn-ghost {
+    @apply btn bg-white text-ink-900 border-2 border-ink-900/10 shadow-pop-sm hover:border-ink-900/20 active:translate-y-[4px] active:shadow-none;
+  }
+  .field {
+    @apply w-full rounded-2xl bg-white border-2 border-ink-900/10 px-4 py-3.5 text-ink-900 placeholder:text-ink-700/40 outline-none transition-colors focus:border-sky font-body text-[15px] font-semibold;
+  }
+  .card-surface {
+    @apply bg-white/90 border-2 border-white rounded-4xl shadow-card;
+  }
+  .label-eyebrow {
+    @apply font-display text-xs sm:text-sm tracking-wide uppercase text-grape font-bold;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}

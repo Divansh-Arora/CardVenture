@@ -27,9 +27,13 @@ main reason cards previously stopped covering material comprehensively
 once a document got long.
 """
 import re
+import time
+import logging
 from dataclasses import dataclass, field
 
 from app.services.pdf_service import PageText
+
+logger = logging.getLogger(__name__)
 
 TARGET_CHUNK_CHARS = 7000
 MAX_CHUNK_CHARS = 9000  # hard ceiling before we force a break mid-page
@@ -133,6 +137,7 @@ def _split_oversized_page(page: PageText) -> list[tuple[int, str]]:
 
 
 def chunk_pages(pages: list[PageText]) -> list[Chunk]:
+    start = time.perf_counter()
     chunks: list[Chunk] = []
 
     current_parts: list[str] = []  # already includes page markers
@@ -183,4 +188,7 @@ def chunk_pages(pages: list[PageText]) -> list[Chunk]:
         current_chars += addition_len
 
     flush()
+    elapsed = time.perf_counter() - start
+    logger.info("chunk_pages: elapsed=%.3fs, input_pages=%d, num_chunks=%d",
+                elapsed, len(pages), len(chunks))
     return chunks
